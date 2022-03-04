@@ -1,0 +1,41 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.navbar__inner {
+    padding: 10px 0px 10px 0px;
+}
+.nav__link {
+    display: inline-block;
+    margin-right: 20px;
+}
+.nav__link:last-child {
+    margin-right: 0px;
+}
+.nav__link.item {
+    font-size: 20px;
+    padding: 5px 10px 5px 10px;
+    text-decoration: none;
+    color: #fff;
+    border-bottom: 1px solid transparent;
+    transition: all .3s linear;
+}
+.nav__link.item:hover {
+    transform: scale(1.2);
+    color: #999;
+    border-bottom: 1px solid #999;
+}
+
+.btn-nav {
+    color: #000;
+    outline: none;
+    background-color: #fff;
+    padding: 5px 10px 5px 10px;
+    border: 1px solid #fff;
+    transition: all .3s linear;
+}
+.btn-nav:hover {
+    background-color: transparent;
+    color: #fff;
+}
