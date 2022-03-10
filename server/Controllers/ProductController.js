@@ -1,11 +1,11 @@
 import Product from '../Models/Product.js'
+import ProductService from "../ProductService.js";
 
 class PostController{
     async create(req,res) {
         try {
-            const {id,name,price} = req.body
-            const prod = await Product.create({id,name,price})
-            res.status(200).json('Продукт был добавлен!')
+            const prod = await ProductService.create(req.body)
+            res.status(201).json(prod)
         } catch (e) {
             res.status(500).json(e)
         }
@@ -13,7 +13,7 @@ class PostController{
 
     async getAll(req, res) {
         try {
-            const products = await Product.find()
+            const products = await ProductService.getAll()
             return res.json(products)
         } catch (e) {
             res.status(500).json(e)
@@ -23,10 +23,7 @@ class PostController{
     async getOne(req, res) {
         try {
             const {id} = req.params
-            if (!id) {
-                return res.status(400).json('No ID in params!')
-            }
-            const product = await Product.findById(id)
+            const product = await ProductService.getOne(id)
             return res.json(product)
         } catch (e) {
             res.status(500).json(e)
@@ -36,23 +33,17 @@ class PostController{
     async Update(req, res) {
         try {
             const newProduct = req.body
-            if(!newProduct._id) {
-                return res.status(400).json('No ID in request body!')
-            }
-            const updatedProduct = await Product.findByIdAndUpdate(newProduct._id, newProduct, {new: true})
+            const updatedProduct = await ProductService.Update(newProduct)
             return res.json(updatedProduct)
         } catch (e) {
-            res.status(500).json(e)
+            res.status(500).json(e.message)
         }
     }
 
     async delete(req, res) {
         try {
             const {id} = req.params
-            if (!id) {
-                return res.status(400).json('No ID in params!')
-            }
-            const product = await Product.findByIdAndDelete(id)
+            const product = await ProductService.delete(id)
             return res.json(product)
         } catch (e) {
             res.status(500).json(e)
