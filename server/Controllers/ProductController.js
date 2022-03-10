@@ -1,5 +1,4 @@
-import Product from './Product.js'
-import product from "./Product.js";
+import Product from '../Models/Product.js'
 
 class PostController{
     async create(req,res) {
