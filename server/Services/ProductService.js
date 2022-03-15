@@ -1,4 +1,4 @@
-import Product from "./Models/Product.js";
+import Product from "../Models/Product.js";
 
 class ProductService{
     async create(prod) {
