@@ -3,8 +3,7 @@ import Product from "../Models/Product.js";
 
 class BasketService{
     async create(prod) { //что-то тут надо сделать с созданием корзины
-        const randomGame = await Product.findOne({name: "GTA6"})
-        return await Basket.create({fullPrice: 100, products: [randomGame.name, randomGame.url, randomGame.price]})
+        return await Basket.create({fullPrice: 0, products: []})
     }
 
     async getAll() {
@@ -18,11 +17,12 @@ class BasketService{
         return Basket.findById(id);
     }
 
-    async Update(product) {
-        if(!product._id) {
+    async Update(products) {
+        if(!products._id) { // проверка есть ли _ID нужной корзины
             throw new Error('You forgot to add any _ID!')
         }
-        return Basket.findByIdAndUpdate(product._id, product, {new: true})
+        const oldBasket = await Basket.findById(products._id)
+        return Basket.findByIdAndUpdate(products._id, {fullPrice:228, products: [...oldBasket.products, [products.name, products.url, products.price] ] }, {new: true})
     }
 
     async delete(id) {
