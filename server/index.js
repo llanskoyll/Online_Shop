@@ -1,6 +1,6 @@
 import express from 'express'
 import mongoose from 'mongoose'
-import Router from './Routes/productRoutes.js'
+import Router from './Routes/Routes.js'
 
 
 const PORT = 5000;
