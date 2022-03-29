@@ -1,8 +1,10 @@
 import Basket from "../Models/Basket.js";
+import Product from "../Models/Product.js";
 
 class BasketService{
-    async create(prod) {
-        return await Basket.create(prod)
+    async create(prod) { //что-то тут надо сделать с созданием корзины
+        const randomGame = await Product.findOne({name: "GTA6"})
+        return await Basket.create({fullPrice: 100, products: [randomGame.name, randomGame.url, randomGame.price]})
     }
 
     async getAll() {

@@ -1,6 +1,6 @@
 import express from 'express'
 import mongoose from 'mongoose'
-import Router from './Routes/Routes.js'
+import router from './Routes/routes.js'
 
 
 const PORT = 5000;
@@ -10,7 +10,7 @@ const app = express();
 
 app.use(express.json())
 
-app.use('/api', Router)
+app.use('/api', router)
 
 async function startApp () {
     try {
