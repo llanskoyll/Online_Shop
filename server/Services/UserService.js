@@ -1,8 +1,8 @@
 import User from "../Models/User.js";
 
 class UserService{
-    async create(prod) {
-        return await User.create({fullPrice: 0, products: []})
+    async create(body) {
+        return await User.create(body)
     }
 
     async getAll() {
@@ -16,11 +16,11 @@ class UserService{
         return User.findById(id);
     }
 
-    async Update(products) {
-        if(!products._id) { // проверка есть ли _ID нужной корзины
+    async Update(users) {
+        if(!users._id) { // проверка есть ли _ID нужной корзины
             throw new Error('You forgot to add any _ID!')
         }
-        return User.findByIdAndUpdate(products._id, products, {new: true})
+        return User.findByIdAndUpdate(users._id, users, {new: true})
     }
 
     async delete(id) {
