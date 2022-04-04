@@ -1,37 +1,35 @@
-import Basket from "../Models/Basket.js";
-import Product from "../Models/Product.js";
+import User from "../Models/User.js";
 
-class BasketService{
+class UserService{
     async create(prod) { //что-то тут надо сделать с созданием корзины
-        return await Basket.create({fullPrice: 0, products: []})
+        return await User.create({fullPrice: 0, products: []})
     }
 
     async getAll() {
-        return Basket.find()
+        return User.find()
     }
 
     async getOne(id) {
         if (!id) {
             throw new Error('you forget ID!')
         }
-        return Basket.findById(id);
+        return User.findById(id);
     }
 
     async Update(products) {
         if(!products._id) { // проверка есть ли _ID нужной корзины
             throw new Error('You forgot to add any _ID!')
         }
-        const oldBasket = await Basket.findById(products._id)
-        return Basket.findByIdAndUpdate(products._id, {fullPrice: 0, products: [...oldBasket.products, [products.name, products.url, products.price] ] }, {new: true})
+        return User.findByIdAndUpdate(products._id, products, {new: true})
     }
 
     async delete(id) {
         if (!id) {
             throw new Error('You forgot ID!')
         }
-        return Basket.findByIdAndDelete(id)
+        return User.findByIdAndDelete(id)
 
     }
 }
 
-export default new BasketService()
+export default new UserService()
