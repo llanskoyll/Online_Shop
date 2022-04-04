@@ -1,7 +1,7 @@
 import User from "../Models/User.js";
 
 class UserService{
-    async create(prod) { //что-то тут надо сделать с созданием корзины
+    async create(prod) {
         return await User.create({fullPrice: 0, products: []})
     }
 
